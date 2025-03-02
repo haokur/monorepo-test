@@ -6,13 +6,20 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run dev",
+    "dev": "turbo run dev --parallel",
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel"
+    "preview": "turbo run preview",
+    "clean": "ts-node cli/clean.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "turbo": "^2.4.4"
+    "@types/node": "^22.13.8",
+    "turbo": "^2.4.4",
+    "typescript": "^5.8.2"
+  },
+  "engines": {
+    "node": ">18.0.0"
   }
 }

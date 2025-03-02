@@ -1,10 +1,20 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
+        "esModuleInterop": true,
         "paths": {
             "@mono/utils": [
-                "../../packages/utils/src"
+                "../../packages/utils/dist"
             ]
-        }
-    }
+        },
+        "rootDir": "./src",
+        "outDir": "./dist",
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "@mono/utils"
+    ]
 }
