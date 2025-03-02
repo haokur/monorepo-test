@@ -1,0 +1,11 @@
+{
+    "name": "@mono/server",
+    "dependencies": {
+        "@mono/utils": "workspace:*"
+    },
+    "scripts": {
+        "start": "node dist/main.js",
+        "build": "tsc",
+        "dev": "tsup src/main.ts --watch"
+    }
+}

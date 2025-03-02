@@ -1,0 +1,18 @@
+{
+  "name": "monorepo-test",
+  "packageManager": "pnpm@8.6.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^2.4.4"
+  }
+}
