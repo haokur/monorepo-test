@@ -10,9 +10,6 @@
             ]
         },
         "dev": {
-            "dependsOn": [
-                "@mono/utils#build"
-            ],
             "cache": false,
             "persistent": true
         },

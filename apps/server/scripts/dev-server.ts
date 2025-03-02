@@ -37,5 +37,5 @@ runDevServer({
   watch: ['src', packageUtilsPath],
   ignoreRoot: ['node_modules', '.git'],
   ignore: ['src/test-ignore.ts'],
-  delay: 500,
+  delay: 1000,
 });
