@@ -31,9 +31,10 @@ function runDevServer(config: INodemonConfig) {
     });
 }
 
+const packageUtilsPath = path.resolve(__dirname, '../../../packages/utils/dist');
 runDevServer({
   script: path.join(__dirname, '../src/main.ts'),
-  watch: ['src'],
+  watch: ['src', packageUtilsPath],
   ignoreRoot: ['node_modules', '.git'],
   ignore: ['src/test-ignore.ts'],
 });

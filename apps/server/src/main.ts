@@ -24,7 +24,7 @@ app.use(KoaStatic(path.resolve(__dirname, '../assets')));
 
 router.get('/', async (ctx) => {
   const result = count(4, 5);
-  ctx.body = 'hello main' + 'count result is ' + result;
+  ctx.body = 'hello main2222' + 'count result is ' + result;
 });
 router.get('/video', async (ctx) => {
   ctx.body = 'hello video';
