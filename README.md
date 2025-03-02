@@ -6,4 +6,3 @@
 
 #### 备注
 - nodemon 使用3.1.4版本，更高的版本nodemon(config)提示方法不存在
-- 依赖package/utils里的包，首次npm run dev有问题，即使配置了dependsOn的@mono/utils#build

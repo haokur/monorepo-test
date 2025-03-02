@@ -1,5 +1,10 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { askByCmd } from './helper/inquirer.helper';
+
+const needExcludeDirs = [
+  'node_modules'
+]
 
 /**
  * 递归删除指定目录下的所有 node_modules 文件夹
@@ -12,9 +17,19 @@ async function deleteDirByDirName(dirPath: string,needDeleteDirName:string): Pro
 
     for (const entry of entries) {
       const fullPath = path.join(dirPath, entry.name);
+      const isDirectory = entry.isDirectory()
+      const isMatchDeleteDirName = entry.name === needDeleteDirName
 
-      if (entry.isDirectory()) {
-        if (entry.name === needDeleteDirName) {
+      const isMatchExcludeName = needExcludeDirs.includes(entry.name)
+      const isDeleteTargetInExclude = needExcludeDirs.includes(needDeleteDirName)
+
+      if (isDirectory) {
+        // 如果是排除的目录，则跳过（除非要删的目录就是）
+        // 比如要删除的是node_modules,除非当前要删的就是node_modules,才能去执行删除
+        if(isMatchExcludeName && !isDeleteTargetInExclude){
+          continue
+        }
+        if (isMatchDeleteDirName) {
           console.log(`🗑️ 正在删除: ${fullPath}`);
           // 删除 node_modules 目录及其所有内容
           await fs.rm(fullPath, { recursive: true, force: true });
@@ -23,7 +38,6 @@ async function deleteDirByDirName(dirPath: string,needDeleteDirName:string): Pro
           await deleteDirByDirName(fullPath,needDeleteDirName);
         }
       }
-      // 如果是文件，则跳过
     }
   } catch (error) {
     if (error instanceof Error) {
@@ -40,9 +54,20 @@ async function main() {
   const targetDir = process.argv[2] || process.cwd();
   console.log(`🔍 正在扫描目录: ${targetDir}`);
 
-  await deleteDirByDirName(targetDir,'node_modules');
-  await deleteDirByDirName(targetDir,'dist');
-
+  const userSelectResult = await askByCmd('checkbox', [
+    {
+      message: '选择要清理的项',
+      name: 'cleanOptions',
+      choices: ['node_modules', 'dist','.turbo'],
+    },
+  ]);
+  if(userSelectResult){
+    const cleanOptions = userSelectResult.cleanOptions as string[]
+    await Promise.all(cleanOptions.map((dirName)=>deleteDirByDirName(targetDir,dirName)))
+    // await deleteDirByDirName(targetDir,'node_modules');
+    // await deleteDirByDirName(targetDir,'dist');
+    // console.log(userSelectResult.cleanOptions,"clean.ts::51行");
+  }
   console.log('✅ 清理完成');
 }
 

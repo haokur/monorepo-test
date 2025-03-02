@@ -15,9 +15,7 @@
       "node",
     ]
   },
-  "include": [
-    "cli/**/*"
-  ],
+  "include": [],
   "exclude": [
     "node_modules"
   ]
