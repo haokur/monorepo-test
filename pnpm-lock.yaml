@@ -90,12 +90,6 @@ importers:
         specifier: ^8.4.0
         version: 8.4.0
 
-  packages/native:
-    devDependencies:
-      tsup:
-        specifier: ^8.4.0
-        version: 8.4.0
-
   packages/utils:
     devDependencies:
       tsup:

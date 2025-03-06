@@ -17,7 +17,7 @@
     "neon-cli": "^0.10.1"
   },
   "scripts": {
-    "dev": "neon build",
+    "dev": "neon build && tsup",
     "build": "neon build && tsup"
   },
   "devDependencies": {
