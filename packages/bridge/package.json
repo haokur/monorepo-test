@@ -1,0 +1,26 @@
+{
+  "name": "@mono/bridge",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/index.mjs"
+  },
+  "files": [
+    "./native/index.node"
+  ],
+  "author": "AllIsWell <admin@haokur.com>",
+  "license": "MIT",
+  "dependencies": {
+    "neon-cli": "^0.10.1"
+  },
+  "scripts": {
+    "dev": "neon build",
+    "build": "neon build && tsup"
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0"
+  }
+}

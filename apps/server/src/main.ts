@@ -6,7 +6,7 @@ import cors from '@koa/cors';
 import KoaRoute from '@koa/router';
 import { count } from '@mono/utils';
 
-import nativeModule from '@mono/native';
+import nativeModule from '@mono/bridge';
 
 const app = new Koa();
 const router = new KoaRoute();
