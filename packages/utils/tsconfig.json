@@ -1,9 +1,14 @@
 {
+    "$schema": "../../configs/tsconfig.schema.json",
     "compilerOptions": {
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
         "module": "esnext",
         "moduleResolution": "node",
         "baseUrl": ".",
         "declaration": true
     },
-    "include": ["src"]
+    "include": [
+        "src"
+    ]
 }
