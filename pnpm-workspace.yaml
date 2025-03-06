@@ -1,4 +1,4 @@
 packages:
-  - 'packages/utils'
+  - 'packages/*'
   - 'apps/*'
   - 'cli'

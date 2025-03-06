@@ -6,6 +6,8 @@ import cors from '@koa/cors';
 import KoaRoute from '@koa/router';
 import { count } from '@mono/utils';
 
+import nativeModule from '@mono/native';
+
 const app = new Koa();
 const router = new KoaRoute();
 
@@ -23,6 +25,9 @@ app.use(
 app.use(KoaStatic(path.resolve(__dirname, '../assets')));
 
 router.get('/', async (ctx) => {
+  console.log(nativeModule,"main.ts::28行");
+  const helloResult = nativeModule.hello()
+  console.log(helloResult,"main.ts::29行");
   const result = count(4, 5);
   ctx.body = 'hello main2222' + 'count result is ' + result;
 });
