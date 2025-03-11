@@ -1,0 +1,1 @@
+console.log(process.env, "index.js::1行");

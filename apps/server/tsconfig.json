@@ -1,10 +1,14 @@
 {
     "$schema": "../../configs/tsconfig.schema.json",
     "compilerOptions": {
+        "noImplicitAny": false,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "baseUrl": ".",
         "esModuleInterop": true,
+        "types": [
+            "node"
+        ],
         "paths": {
             "@mono/utils": [
                 "../../packages/utils/dist"
@@ -12,6 +16,11 @@
         },
         "rootDir": "./src",
         "outDir": "./dist",
+        "plugins": [
+            {
+                "transform": "./plugins/variable-replace-plugin.ts"
+            }
+        ]
     },
     "include": [
         "./src/**/*"

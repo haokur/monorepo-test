@@ -1,6 +1,7 @@
 {
     "$schema": "../../configs/tsconfig.schema.json",
     "compilerOptions": {
+        "esModuleInterop": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "baseUrl": ".",
