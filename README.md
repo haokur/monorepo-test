@@ -9,3 +9,4 @@
 - chalk 使用4版本，更高的版本不支持import导入
 - vscode中格式化失效，安装prettier的依赖：pnpm i prettier prettier-eslint --save-dev -w
 - 在 pnpm 的仓库中，在项目根目录安装依赖，使用：-w 参数
+- 初始化neon项目打包index.node：`npm init neon my-neon-project`

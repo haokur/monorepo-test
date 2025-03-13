@@ -1,11 +1,8 @@
-native/target
-native/index.node
-native/artifacts.json
-**/*~
+target
+index.node
 **/node_modules
 **/.DS_Store
-
-
-# Added by cargo
-
-/target
+npm-debug.log*cargo.log
+cross.log
+Cargo.lock
+Cargo.log
