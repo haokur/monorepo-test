@@ -35,8 +35,9 @@ router.get('/', async (ctx) => {
 router.get('/env', async (ctx) => {
     ctx.body = { message: 'current env is ' + getEnv() };
 });
-router.get('/video', async (ctx) => {
-    ctx.body = 'hello video';
+router.get('/dylib', async (ctx) => {
+    const result = nativeModule.sum(3, 5);
+    ctx.body = `dyblib add result is ${result}`;
 });
 
 app.use(router.routes()).use(router.allowedMethods());

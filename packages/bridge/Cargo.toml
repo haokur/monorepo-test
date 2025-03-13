@@ -12,3 +12,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 neon = "1"
+libloading = "0.8"

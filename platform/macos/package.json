@@ -1,0 +1,13 @@
+{
+  "name": "macos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "swift build -c release",
+    "build": "swift build -c release"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
