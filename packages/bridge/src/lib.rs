@@ -3,6 +3,34 @@ use neon::prelude::*;
 use std::env;
 use std::fs;
 
+fn get_dylib_absolute_path(dylib_name: &str) -> String {
+    // 获取当前工作目录
+    let current_dir = env::current_dir().expect("Failed to get current directory");
+
+    // 构建基础路径：向上两级，然后进入目标目录
+    let base_path = current_dir.join("../../platform/macos/NativeLibrary/.build/release");
+
+    // 拼接完整的动态库文件名（自动添加.dylib后缀）
+    let dylib_filename = format!("{}.dylib", dylib_name);
+    let relative_lib_path = base_path.join(dylib_filename);
+
+    // 转换为绝对路径
+    let absolute_lib_path =
+        fs::canonicalize(&relative_lib_path).expect("Failed to resolve absolute path");
+
+    // 调试输出路径信息
+    // println!(
+    //     "Current dir: {:?}\nRelative path: {:?}\nAbsolute path: {:?}",
+    //     current_dir, relative_lib_path, absolute_lib_path
+    // );
+
+    // 将PathBuf转换为String
+    absolute_lib_path
+        .to_str()
+        .expect("Path contains invalid UTF-8 characters")
+        .to_string()
+}
+
 fn hello(mut cx: FunctionContext) -> JsResult<JsString> {
     Ok(cx.string("hello node"))
 }
@@ -11,15 +39,7 @@ fn sum(mut cx: FunctionContext) -> JsResult<JsNumber> {
     let a = cx.argument::<JsNumber>(0)?.value(&mut cx) as i32;
     let b = cx.argument::<JsNumber>(1)?.value(&mut cx) as i32;
 
-    let index_node_path = env::current_dir().expect("Failed to get current directory");
-    let relative_lib_path = index_node_path
-        .join("../../platform/macos/NativeLibrary/.build/release/libMySwiftLib.dylib");
-    let absolute_lib_path = fs::canonicalize(&relative_lib_path)
-        .expect("Failed to resolve absolute path for libMySwiftLib.dylib");
-    println!(
-        "index_node_path is {:?} ; relative_lib_path is{:?};lib_path_absolute is {:?}",
-        index_node_path, relative_lib_path, absolute_lib_path
-    );
+    let absolute_lib_path = get_dylib_absolute_path("libMySwiftLib");
 
     // 加载 `.dylib`
     let result = unsafe {
