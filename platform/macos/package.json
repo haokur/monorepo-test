@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "swift build -c release",
-    "build": "swift build -c release"
+    "dev": "ts-node build-macos.ts",
+    "build": "ts-node build-macos.ts"
   },
   "keywords": [],
   "author": "",
