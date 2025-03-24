@@ -3,3 +3,4 @@ packages:
   - 'apps/*'
   - 'cli'
   - 'platform/*'
+  - 'plugins/*'

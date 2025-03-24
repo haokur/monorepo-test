@@ -6,3 +6,4 @@ npm-debug.log*cargo.log
 cross.log
 Cargo.lock
 Cargo.log
+.idea/*

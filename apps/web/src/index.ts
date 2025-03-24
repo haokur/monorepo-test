@@ -6,3 +6,4 @@ fetch('http://localhost:9090/env').then(async (res) => {
 });
 
 console.log(count(6, 6), process.env.ENV_CONFIG, 'index.ts::7行');
+$electron.test();
