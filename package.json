@@ -2,7 +2,7 @@
   "name": "monorepo-test",
   "packageManager": "pnpm@8.6.0",
   "version": "1.0.0",
-  "description": "",
+  "description": "- npm start 或 npm run dev 启动开发环境 - npm run build 打包 - npm run preview 打包后预览 - npm run clean 清理node_modules和dist",
   "main": "index.js",
   "scripts": {
     "start": "npm run dev",
@@ -10,7 +10,8 @@
     "test": "turbo run test",
     "build": "turbo run build",
     "preview": "turbo run preview",
-    "clean": "ts-node cli/clean.ts"
+    "clean": "ts-node cli/clean.ts",
+    "electron": "NODE_OPTIONS='--loader ts-node/esm' ts-node scripts/build-electron.ts"
   },
   "keywords": [],
   "author": "",
@@ -18,13 +19,14 @@
   "devDependencies": {
     "@types/node": "^22.13.9",
     "chalk": "^4.1.2",
+    "chokidar": "^4.0.3",
     "cross-env": "^7.0.3",
     "prettier": "^3.5.3",
     "prettier-eslint": "^16.3.0",
     "ts-node": "^10.9.2",
     "turbo": "^2.4.4",
-    "typescript": "^5.8.2",
-    "chokidar": "^4.0.3"
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.8.2"
   },
   "engines": {
     "node": ">18.0.0"
