@@ -1,7 +1,16 @@
+mod utils;
+
 use libloading::{Library, Symbol};
 use neon::prelude::*;
 use std::env;
 use std::fs;
+use crate::utils::logger;
+
+fn log_message(mut cx: FunctionContext) -> JsResult<JsUndefined> {
+    let logger_content = cx.argument::<JsString>(0)?.value(&mut cx) as String;
+    logger::logger_execute(logger_content);
+    Ok(cx.undefined())
+}
 
 fn get_dylib_absolute_path(dylib_name: &str) -> String {
     // 获取当前工作目录
@@ -57,5 +66,6 @@ fn sum(mut cx: FunctionContext) -> JsResult<JsNumber> {
 fn main(mut cx: ModuleContext) -> NeonResult<()> {
     cx.export_function("hello", hello)?;
     cx.export_function("sum", sum)?;
+    cx.export_function("log_message",log_message)?;
     Ok(())
 }

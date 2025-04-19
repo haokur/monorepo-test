@@ -15,7 +15,7 @@ function createMainWindow() {
     win.loadURL('http://localhost:8080');
 
     win.on('close', async () => {
-        console.log('window close', 'main.ts::17行');
+        console.log('window close', 'main.ts::172222行');
     });
 
     win.webContents.openDevTools({ mode: 'undocked' });

@@ -2,3 +2,5 @@
 **/.turbo/**
 **/dist/**
 .DS_Store
+**/.idea
+**/logs/**
