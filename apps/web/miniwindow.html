@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mini窗</title>
+    <style>
+        html {
+            /* height: 400px; */
+        }
+
+        .content {
+            border-radius: 12px;
+            /* height: 100px; */
+            background-color: #fff;
+            /* transition: height .3s; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content" id="content">
+        <div>这是mini窗</div>
+        <div>
+            <button type="button" id="change-height">增加高度</button>
+            <!-- <button type="button" id="remove-height">减少高度</button> -->
+        </div>
+    </div>
+    <script>
+        let currentHeight = 100;
+        document.getElementById('change-height').addEventListener('click', () => {
+            currentHeight = currentHeight === 100 ? 400 : 100;
+            console.log(currentHeight, document.getElementById('content'), "miniwindow.html::24行");
+            // document.getElementById('content').style.height = `${currentHeight}px`
+
+            let element = document.createElement("div")
+            // element.style.height = '40px';
+            element.innerHTML = "hello world";
+
+            setTimeout(() => {
+                document.getElementById('content').appendChild(element)
+            }, 3000);
+        })
+
+    </script>
+</body>
+
+</html>

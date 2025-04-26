@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "PageList",
     component: List,
     meta: {
-      keepAlive: true,
+      keepAlive: false,
     },
   },
   {

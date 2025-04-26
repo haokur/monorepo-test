@@ -5,8 +5,14 @@ import childProcess from 'child_process';
 import { EOL } from 'os';
 const Electron = require('electron');
 import chalk from 'chalk';
+import { copy } from 'fs-extra';
 
 const sourceDir = path.resolve(__dirname, '../src');
+async function copyStaticAssets() {
+    const srcDir = path.resolve(sourceDir, 'static'); // 原始静态文件夹
+    const destDir = path.resolve(sourceDir, '../dist', 'static'); // 输出到dist
+    await copy(srcDir, destDir);
+}
 
 let electronProcess: any = null;
 let electronProcessLocker = false;
@@ -123,4 +129,5 @@ async function startBuild() {
     }
 }
 
+copyStaticAssets();
 startBuild();

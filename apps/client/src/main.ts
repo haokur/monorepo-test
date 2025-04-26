@@ -1,6 +1,7 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import { injectListenEvents } from './events/events';
+import { createMiniWindow } from './miniwindow';
 
 function createMainWindow() {
     const win = new BrowserWindow({
@@ -19,7 +20,7 @@ function createMainWindow() {
         console.log('window close', 'main.ts::172222行');
     });
 
-    // win.webContents.openDevTools({ mode: 'undocked' });
+    createMiniWindow();
     injectListenEvents();
 
     return win;
