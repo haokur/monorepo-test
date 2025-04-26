@@ -1,14 +1,17 @@
 {
-    "$schema": "../../configs/tsconfig.schema.json",
-    "compilerOptions": {
-        "esModuleInterop": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "baseUrl": ".",
-        "paths": {
-            "@mono/utils": [
-                "../../packages/utils/src"
-            ]
-        }
-    }
+  "$schema": "../../configs/tsconfig.schema.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@mono/utils": [
+        "../../packages/utils/src"
+      ]
+    },
+    "types": [
+      "node"
+    ]
+  }
 }

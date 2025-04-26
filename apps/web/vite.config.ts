@@ -1,8 +1,12 @@
 /// <reference types="vite/client" />
 import { readFileSync } from 'fs';
 import path from 'path';
-import { defineConfig } from 'vite';
 import { parseIniFile } from '@mono/utils';
+
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import VueDevTools from 'vite-plugin-vue-devtools';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 const commonConfig = parseIniFile(
     readFileSync(path.resolve(__dirname, '../../env/.env')).toString()
@@ -11,9 +15,14 @@ const matchModeConfig = parseIniFile(
     readFileSync(path.resolve(__dirname, `../../env/.env.${process.env.NODE_ENV}`)).toString()
 );
 const envConfig = { ...commonConfig, ...matchModeConfig };
-console.log(envConfig, 'vite.config.ts::14行');
 
 export default defineConfig({
+    plugins: [vue(), vueJsx(), VueDevTools()],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './src'),
+        },
+    },
     root: __dirname,
     base: './',
     define: {
