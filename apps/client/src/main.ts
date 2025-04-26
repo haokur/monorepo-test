@@ -1,5 +1,6 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
+import { injectListenEvents } from './events/events';
 
 function createMainWindow() {
     const win = new BrowserWindow({
@@ -19,6 +20,7 @@ function createMainWindow() {
     });
 
     // win.webContents.openDevTools({ mode: 'undocked' });
+    injectListenEvents();
 
     return win;
 }
@@ -29,8 +31,4 @@ app.whenReady().then(async () => {
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createMainWindow();
     });
-});
-
-ipcMain.on('message-from-renderer', (event, args) => {
-    console.log('message-from-renderer://', event, args);
 });

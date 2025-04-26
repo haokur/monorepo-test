@@ -5,9 +5,13 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "noImplicitAny": true,
     "paths": {
       "@mono/utils": [
         "../../packages/utils/src"
+      ],
+      "@/*": [
+        "src/*"
       ]
     },
     "types": [

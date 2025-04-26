@@ -76,15 +76,14 @@ async function startBuild() {
     try {
         logInfo('开始初始化 esbuild...');
         const ctx = await esbuild.context({
-            entryPoints: ['./src/main.ts', './src/preload.ts'],
-            outdir: './dist',
+            entryPoints: [`${sourceDir}/**/*.ts`], // ✅ 通配符，匹配所有 ts 文件
+            outdir: path.resolve(sourceDir, '../dist'),
+            bundle: false, // ✅ 不打包，只单文件编译
             platform: 'node',
             target: 'esnext',
-            bundle: false,
             sourcemap: false,
             minify: false,
             format: 'cjs',
-            external: [],
             loader: { '.ts': 'ts' },
         });
 
