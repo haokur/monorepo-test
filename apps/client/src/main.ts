@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 
 function createMainWindow() {
@@ -18,7 +18,7 @@ function createMainWindow() {
         console.log('window close', 'main.ts::172222行');
     });
 
-    win.webContents.openDevTools({ mode: 'undocked' });
+    // win.webContents.openDevTools({ mode: 'undocked' });
 
     return win;
 }
@@ -29,4 +29,8 @@ app.whenReady().then(async () => {
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createMainWindow();
     });
+});
+
+ipcMain.on('message-from-renderer', (event, args) => {
+    console.log('message-from-renderer://', event, args);
 });

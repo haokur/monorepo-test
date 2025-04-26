@@ -1,7 +1,7 @@
-import { contextBridge } from 'electron';
+import { contextBridge, ipcRenderer } from 'electron';
 
 contextBridge.exposeInMainWorld('$electron', {
-    test() {
-        console.log('run by preload', 'preload.ts::5行');
-    },
+    sendMessageToMain: (message: any) => ipcRenderer.send('message-from-renderer', message),
+    // onMessageFromMain: (callback: Function) =>
+    //     ipcRenderer.on('message-from-main', (event, ...args) => callback(...args)),
 });

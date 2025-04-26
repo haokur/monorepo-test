@@ -33,3 +33,13 @@ document.addEventListener('keydown', (ev) => {
     KeyboardEventMap[keyboardCode]();
     ev.preventDefault();
 });
+
+document.getElementById('test-ipc')?.addEventListener('click', (ev) => {
+    console.log(ev, 'index.ts::39行');
+    $electron.sendMessageToMain({
+        event: 'getCurrentEnv',
+        data: {
+            name: 'test',
+        },
+    });
+});

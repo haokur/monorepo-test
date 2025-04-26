@@ -1,3 +1,4 @@
 declare const $electron: {
-    test(): void;
+    sendMessageToMain: (message: any) => void;
+    // onMessageFromMain: (message: any) => void;
 };
