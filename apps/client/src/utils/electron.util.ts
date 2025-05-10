@@ -17,7 +17,15 @@ export function broadcastAllWindows(event: string, message: EventMessageContent)
 }
 
 const senderLogMsg = (...args: any[]) => {
-    let content = args.map((item) => item.toString()).join('');
+    let content = args
+        .map((item) => {
+            if (typeof item === 'object') {
+                return JSON.stringify(item);
+            } else {
+                return item.toString();
+            }
+        })
+        .join('');
     nativeModule.log_message('main', content);
 };
 

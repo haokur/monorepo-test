@@ -38,3 +38,13 @@ export function getCombinationShortcut(e: KeyboardEvent): string | undefined {
     const resultKeyboardValue = combinationKeys.join('+');
     return resultKeyboardValue;
 }
+
+export function getTagLogger(tag: string) {
+    const tagStr = `[${tag}]`;
+    return {
+        info: (...args: any[]) => $electron.info(tagStr, ...args),
+        debug: (...args: any[]) => $electron.debug(tagStr, ...args),
+        warn: (...args: any[]) => $electron.warn(tagStr, ...args),
+        error: (...args: any[]) => $electron.error(tagStr, ...args),
+    };
+}

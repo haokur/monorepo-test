@@ -26,8 +26,16 @@ type VoidCallback = (...args: any[]) => void;
 
 function getLoggerFuncs() {
     const senderLogMsg = (level: string, ...args: any[]) => {
-        let content = args.map((item) => item.toString()).join('');
-        content = `[${level}] ${content}`;
+        let content = args
+            .map((item) => {
+                if (typeof item === 'object') {
+                    return JSON.stringify(item);
+                } else {
+                    return item.toString();
+                }
+            })
+            .join(' ');
+        content = `${level} ${content}`;
         ipcRenderer.send('render-native-logger', content);
     };
 
