@@ -2,6 +2,9 @@ import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import { injectListenEvents } from './events/events';
 import { createMiniWindow } from './miniwindow';
+import { getTagLogger } from './utils/electron.util';
+
+const logger = getTagLogger('MAIN_PAGE');
 
 function createMainWindow() {
     const win = new BrowserWindow({
@@ -22,6 +25,8 @@ function createMainWindow() {
 
     createMiniWindow();
     injectListenEvents();
+
+    logger.info('main init ok!!!');
 
     return win;
 }

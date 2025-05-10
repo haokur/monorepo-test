@@ -40,6 +40,10 @@ importers:
         version: 5.8.2
 
   apps/client:
+    dependencies:
+      '@mono/bridge':
+        specifier: workspace:*
+        version: link:../../packages/bridge
     devDependencies:
       '@types/fs-extra':
         specifier: ^11.0.4

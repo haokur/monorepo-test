@@ -2,6 +2,7 @@ import { ipcMain, BrowserWindow } from 'electron';
 
 import * as eventHandlerFuncs from './event-handlers';
 import { broadcastAllWindows } from '../utils/electron.util';
+import nativeModule from '@mono/bridge';
 type HandlerKey = keyof typeof eventHandlerFuncs;
 
 async function callHandler<K extends HandlerKey>(name: K, ...args: any[]): Promise<any> {
@@ -63,5 +64,11 @@ export function injectListenEvents() {
     // 对应preload的broadcast
     ipcMain.on('broadcast-from-renderer', async (_event, action: string, options) => {
         broadcastAllWindows(action, options);
+    });
+
+    // 对应renderer的打印
+    ipcMain.on('render-native-logger', async (_event, content: string) => {
+        
+        nativeModule.log_message('render', content);
     });
 }

@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron';
+
 const uuidv4 = () => Date.now() + Math.random().toString(36).slice(2);
 
 // on的持续监听
@@ -22,6 +23,21 @@ ipcRenderer.on('clear-for-emit', (_sender, actionId) => {
 });
 
 type VoidCallback = (...args: any[]) => void;
+
+function getLoggerFuncs() {
+    const senderLogMsg = (level: string, ...args: any[]) => {
+        let content = args.map((item) => item.toString()).join('');
+        content = `[${level}] ${content}`;
+        ipcRenderer.send('render-native-logger', content);
+    };
+
+    return {
+        debug: (...args: any[]) => senderLogMsg('[DEBUG]', ...args),
+        info: (...args: any[]) => senderLogMsg('[INFO]', ...args),
+        warn: (...args: any[]) => senderLogMsg('[WARN]', ...args),
+        error: (...args: any[]) => senderLogMsg('[ERROR]', ...args),
+    };
+}
 
 contextBridge.exposeInMainWorld('$electron', {
     // 单次请求
@@ -47,4 +63,5 @@ contextBridge.exposeInMainWorld('$electron', {
         ipcRenderer.send('emit-from-renderer', action, data, actionId);
         return () => EmitEventHandlerMap.delete(actionId);
     },
+    ...getLoggerFuncs(),
 });

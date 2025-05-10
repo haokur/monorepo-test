@@ -73,7 +73,7 @@ export function createMiniWindow() {
     newWin.loadURL('http://localhost:8080/#/list');
     newWin.setIgnoreMouseEvents(true, { forward: true }); // 允许鼠标穿透
 
-    injectListenEvents();
+    // injectListenEvents();
 
     createTray();
 }

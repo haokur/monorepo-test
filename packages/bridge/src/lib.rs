@@ -1,14 +1,14 @@
 mod utils;
 
-use crate::utils::logger;
 use libloading::{Library, Symbol};
 use neon::prelude::*;
 use std::env;
 use std::fs;
 
 fn log_message(mut cx: FunctionContext) -> JsResult<JsUndefined> {
-    let logger_content = cx.argument::<JsString>(0)?.value(&mut cx) as String;
-    logger::logger_execute(logger_content);
+    let module = cx.argument::<JsString>(0)?.value(&mut cx);
+    let content = cx.argument::<JsString>(1)?.value(&mut cx);
+    utils::logger::logger_execute(module, content);
     Ok(cx.undefined())
 }
 
