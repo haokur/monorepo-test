@@ -1,0 +1,1 @@
+declare type IpcActionNames = 'getEnv'|'openDevTools'|'watchEvents'|'add'

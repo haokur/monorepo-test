@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "outDir": "../typings",
+        "strict": true,
+        "module": "ESNext",
+        "target": "ESNext"
+    },
+    "include": [
+        "./src/events/index.ts"
+    ]
+}

@@ -1,8 +1,12 @@
 declare const $electron: {
-    emit: (action: string, data?: any, handler?: (...args: any[]) => void) => (() => void) | null;
-    on: (action: string, handler: (...args: any[]) => void) => (() => void) | null;
-    request: (action: string, args?: any) => Promise<any>;
-    broadcast: (action: string, args?: any) => void;
+    emit: (
+        action: IpcActionNames,
+        data?: any,
+        handler?: (...args: any[]) => void
+    ) => (() => void) | null;
+    request: (action: IpcActionNames, args?: any) => Promise<any>;
+    on: (action: RenderIpcActionNames, handler: (...args: any[]) => void) => (() => void) | null;
+    broadcast: (action: RenderIpcActionNames, args?: any) => void;
     debug: (...args: any) => void;
     warn: (...args: any) => void;
     info: (...args: any) => void;

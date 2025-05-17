@@ -3,7 +3,7 @@
         <button @click="openDevTools">打开控制台</button>
         <button @click="stopListenConnectChange">取消订阅连接状态</button>
         <button @click="startWatch('num')">开始监听-数字</button>
-        <button @click="startWatch('code')">开始监听-字母</button>
+        <button @click="startWatch2('code')">开始监听-字母</button>
         <button @click="jumpDetailPage">跳转详情页</button>
     </div>
 </template>
@@ -35,6 +35,12 @@ const jumpDetailPage = () => {
 
 const startWatch = (type: string) => {
     emit('watchEvents', type, handleWatchEvents);
+};
+
+const startWatch2 = (type: string) => {
+    emit('watchEvents', type, (res) => {
+        console.log(res, 'list.vue::42行');
+    });
 };
 </script>
 <style lang="scss" scoped></style>

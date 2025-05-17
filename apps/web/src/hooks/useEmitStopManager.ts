@@ -14,7 +14,7 @@ export function useEmitEventManager() {
     /**
      * 注册监听
      */
-    const emit = (action: string, payload: any, callback: (...args: any[]) => void) => {
+    const emit = (action: IpcActionNames, payload: any, callback: (...args: any[]) => void) => {
         const stopFn = $electron.emit(action, payload, callback);
         if (typeof stopFn === 'function') {
             listeners.push({

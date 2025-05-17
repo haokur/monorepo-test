@@ -1,6 +1,6 @@
 import { ipcMain, BrowserWindow } from 'electron';
 
-import * as eventHandlerFuncs from './event-handlers';
+import * as eventHandlerFuncs from './index';
 import { broadcastAllWindows } from '../utils/electron.util';
 import nativeModule from '@mono/bridge';
 type HandlerKey = keyof typeof eventHandlerFuncs;
@@ -68,7 +68,6 @@ export function injectListenEvents() {
 
     // 对应renderer的打印
     ipcMain.on('render-native-logger', async (_event, content: string) => {
-        
         nativeModule.log_message('render', content);
     });
 }

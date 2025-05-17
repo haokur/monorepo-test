@@ -1,7 +1,7 @@
 import { onMounted, onBeforeUnmount, ref, Ref } from 'vue';
 
 export function useElectronEvent(
-    event: string,
+    event: RenderIpcActionNames,
     callback: (...args: any[]) => void,
     options?: { immediate?: boolean }
 ): [() => void, () => void, Ref<boolean, boolean>] {
